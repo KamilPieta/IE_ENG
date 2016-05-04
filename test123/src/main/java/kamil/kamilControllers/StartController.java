@@ -11,10 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class StartController {
 
+
     @RequestMapping("/home")
-    public String test(String text){
+    public String test(){
 
         return "test";
+
+    }
+
+    @RequestMapping("/mail")
+    public String email(String text){
+
+        return "mail_composer";
 
     }
 

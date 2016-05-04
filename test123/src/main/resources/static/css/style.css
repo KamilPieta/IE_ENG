@@ -283,7 +283,7 @@ fieldset#body {
   
 }
 #loginForm #login:hover{
-     background:#F6608A;
+     background:#53bed6;
 }
 #loginForm input {
    width: 100%;
@@ -737,7 +737,7 @@ label {
 }
 .contact-form input[type="text"], .contact-form textarea {
   width: 100%;
-  border: 1px solid #ddd;
+  border: 1px solid #333;
   outline: none;
   background: #fff;
   padding: 15px 18px;
@@ -751,6 +751,7 @@ label {
   height: 220px;
   resize: none;
   margin: 0em 0 0.5em 0;
+  border: 2px solid #333;
 }
 .contact-form input[type="submit"] {
   outline: none;
@@ -762,7 +763,7 @@ label {
   font-size: 0.95em;
   display: block;
   width: 21%;
-  border: none;
+  border: #34353a;
   float: right;
 }
 .contact-form input[type="submit"]:hover {
@@ -878,7 +879,7 @@ h3.tittle.two {
 	  text-align: center;
 	}
 	.banner {
-	  background: #f6608a;
+	  background: #53bed6;
 	  min-height: 700px;
 	}
 	.contact-top {
