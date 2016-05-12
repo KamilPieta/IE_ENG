@@ -25,7 +25,8 @@ public class SendMailService {
         mail.setTo(mailer.getAdminAdress());
         mail.setFrom(mailer.getAdressfrom());
         mail.setSubject(mailer.getSubject());
-        mail.setText(mailer.getContent());
+        mail.setText("Dnia " + mailer.getDate()+" Uzytkownik "+mailer.getName()+" wyslal wiadomosc o tresci: "+mailer.getContent());
+
         javaMailSender.send(mail);
     }
 }

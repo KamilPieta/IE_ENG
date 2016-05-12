@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     private static List<User> users;
 
-    static{
+   static{
         users= populateDummyUsers();
     }
 

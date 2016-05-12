@@ -6,9 +6,12 @@ import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 
 import java.text.DateFormat;
@@ -37,11 +40,12 @@ private SendMailService sendMailService;
         mailer.setAdressfrom(email);
         mailer.setSubject(subject);
         mailer.setContent(content);
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy ss:mm:HH");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         mailer.setDate(dateFormat.format(date));
         mailer.setMailID(1);
         logger.info(mailer.toString());
+
         try{
         sendMailService.sendMailMailer(mailer);
         }
@@ -52,8 +56,37 @@ private SendMailService sendMailService;
         return "dziekujemy";
     }
 
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public ModelAndView httpServicePostExample( ModelMap model ) {
+        return new ModelAndView("index");
+    }
 
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public  @ResponseBody String saveCompany( @RequestParam("clientName")String name,
+                                              @RequestParam("clientEmail")String email,
+                                              @RequestParam("clientSubject")String subject,
+                                              @RequestParam("userMsg")String content) {
+logger.info("weszlem");
 
+        mailer = new Mailer();
+        mailer.setName(name);
+        mailer.setAdressfrom(email);
+        mailer.setSubject(subject);
+        mailer.setContent(content);
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        mailer.setDate(dateFormat.format(date));
+        mailer.setMailID(1);
+        logger.info(mailer.toString());
 
+        try{
+            sendMailService.sendMailMailer(mailer);
+        }
+        catch(MailException e)
+        {
+            logger.info("OPS!" + e.getMessage());
+        }
+        return "Wyslano maila";
+    }
 
 }

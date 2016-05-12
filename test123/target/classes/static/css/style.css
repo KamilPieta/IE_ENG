@@ -1958,6 +1958,9 @@ h3.tittle.two {
 	.banner {
 	   min-height: 285px;
 	}
+    div.right{
+        float: right;
+    }
 	.scroll-down {
 	  margin: 6% auto 0;
 	  text-align: center;

@@ -6,6 +6,7 @@
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/java/kamil/ProjektKApplication.java</file>
           <file>file://$MODULE_DIR$/src/main/java/kamil/config/SecurityConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring-security.xml</file>
         </fileset>
       </configuration>
     </facet>
