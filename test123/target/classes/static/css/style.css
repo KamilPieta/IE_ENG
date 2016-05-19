@@ -774,7 +774,7 @@ label {
   padding: 3em 0 1em 0;
 }
 .contact {
-  background-color: #F7F7F7;
+  background-color: rgba(40, 31, 47, 0.82);
 }
 h3.tittle.two {
   margin: 0.5em 0;
@@ -1074,7 +1074,7 @@ h3.tittle.two {
 	  }
 	  .experience-left h5, .experience-left-trd h5, .experience-right-snd h5 {
 	  font-size: 0.8em;
-	  color: #34353a;
+	  color:  rgba(40, 31, 47, 0.82);
 	  margin: 14px 0;
 	}
 	.experience-left p,.experience-left-trd p,.experience-right-snd p {

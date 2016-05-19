@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class SendMailService {
 
     private JavaMailSender javaMailSender;
+    private final String adminAdress="maildoprojektow@gmail.com";
 
     @Autowired
     public SendMailService(JavaMailSender javaMailSender){
@@ -22,7 +23,7 @@ public class SendMailService {
 
     public void sendMailMailer(Mailer mailer) throws MailException{
         SimpleMailMessage mail = new SimpleMailMessage();
-        mail.setTo(mailer.getAdminAdress());
+        mail.setTo(adminAdress);
         mail.setFrom(mailer.getAdressfrom());
         mail.setSubject(mailer.getSubject());
         mail.setText("Dnia " + mailer.getDate()+" Uzytkownik "+mailer.getName()+" wyslal wiadomosc o tresci: "+mailer.getContent());

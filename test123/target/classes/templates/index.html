@@ -10,6 +10,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
        xmlns:th="http://www.thymeleaf.org"
        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.7.2/angular-translate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-sanitize.js"></script> 		<!--//Dolaczam Angulara<-->
+<script src="js/jquery-1.11.1.min.js"></script>
 <head>
 <title>Kamil Pieta - IT Specialist</title>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -19,11 +24,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-	<script src="js/app.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.7.2/angular-translate.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-sanitize.js"></script> 		<!--//Dolaczam Angulara<-->
-	<script src="js/jquery-1.11.1.min.js"></script>
+
 <!--webfonts-->
 <link href='//fonts.googleapis.com/css?family=Candal|Raleway:500,600,400' rel='stylesheet' type='text/css'/>
 <!--//webfonts-->
@@ -296,97 +297,91 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<script src="js/user_service.js"></script>
 		<script src="js/user_controller.js"></script>
 
+<!--dodawnia proramow-->
+	<div class="generic-container" ng-controller="ProgramController">
+        <div class="panel panel-default">
+        <div class="formcontainer">
+            <form   ng-submit="accept">
 
-		<div ng-app="ProgramApp">
-			<div  ng-controller="ProgramController" >
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="uname">Nazwa Programu</label>
+                        <div class="col-md-7">
+                            <input type="text" ng-model="program.authors" id="uname" class="username form-control input-sm" placeholder="Podaj autorow" ng-minlength="3"/>
+                            <div class="has-error" ng-show="myForm.$dirty">
+                                <span ng-show="myForm.uname.$error.required">This is a required field</span>
+                                <span ng-show="myForm.uname.$error.minlength">Minimum length required is 3</span>
+                                <span ng-show="myForm.uname.$invalid">This field is invalid </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="desc">Opis programu</label>
+                        <div class="col-md-7">
+                            <textarea name="programList.desc"  ng-model="program.desc" id="desc" class="username form-control input-sm" placeholder="Wpisz opis"> </textarea>
 
+                    </div>
+                </div>
+            </div>
 
-				<div class="panel panel-default">
-					<div class="panel-heading"><span class="lead">Dodaj program</span></div>
-					<div class="formcontainer">
-						<form ng-submit="ProgramController.submit()" name="myForm" class="form-horizontal">
-							<input type="hidden" ng-model="ProgramController.user.id" />
-							<div class="row">
-								<div class="form-group col-md-12">
-									<label class="col-md-2 control-lable" for="uname">Autor</label>
-									<div class="col-md-7">
-										<input type="text" ng-model="ProgramController.user.username" id="uname" class="username form-control input-sm" placeholder="Enter your name" ng-minlength="3"/>
-										<div class="has-error" ng-show="myForm.$dirty">
-											<span ng-show="myForm.uname.$error.required">This is a required field</span>
-											<span ng-show="myForm.uname.$error.minlength">Minimum length required is 3</span>
-											<span ng-show="myForm.uname.$invalid">This field is invalid </span>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-							<div class="row">
-								<div class="form-group col-md-12">
-									<label class="col-md-2 control-lable" for="address">Address</label>
-									<div class="col-md-7">
-										<input type="text" ng-model="ProgramController.user.address" id="address" class="form-control input-sm" placeholder="Enter your Address. [This field is validation free]"/>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="form-group col-md-12">
-									<label class="col-md-2 control-lable" for="email">Email</label>
-									<div class="col-md-7">
-										<input type="email" ng-model="ProgramController.user.email" id="email1" class="email form-control input-sm" placeholder="Enter your Email" />
-										<div class="has-error" ng-show="myForm.$dirty">
-											<span ng-show="myForm.email.$error.required">This is a required field</span>
-											<span ng-show="myForm.email.$invalid">This field is invalid </span>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="form-actions floatRight">
-									<input type="submit"  value="{{!ProgramController.user.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid"/>
-									<button type="button" ng-click="ProgramController.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Resetuj</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<!-- Default panel contents -->
-					<div class="panel-heading"><span class="lead">Lista programów </span></div>
-					<div class="tablecontainer">
-						<table class="table table-hover">
-							<thead>
-							<tr>
-								<th>ID.</th>
-								<th>Nazwa</th>
-								<th>Screen</th>
-								<th>Kod zrodlowy</th>
-								<th width="20%"></th>
-							</tr>
-							</thead>
-
-							<tr ng-repeat="u in ProgramController.users">
-								<td><span ng-bind="u.id"></span></td>
-								<td><span ng-bind="u.username"></span></td>
-								<td><span ng-bind="u.address"></span></td>
-								<td><span ng-bind="u.email"></span></td>
-								<td>
-									<button type="button" ng-click="ProgramController.edit(u.id)" class="btn btn-success custom-width">Edit</button>
-									<button type="button" ng-click="ProgramController.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
-								</td>
-							</tr>
-
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="screen">Dodaj Screen</label>
+                        <input type="file"  id="screen" />
+                      </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="sourceCode">Dodaj Kod Zrodlowy</label>
+                        <input type="file"  id="sourceCode" />
+                    </div>
+                </div>
 
 
-		<!-- TUTAJ SIE KONCZY!-->
+                <div class="row">
+                    <div class="form-actions floatRight">
+                        <input type="submit"   ng-click="sendProgram()" class="btn btn-primary btn-sm"/> <!--ng-disabled="myForm.$invalid"-->
+                        <input type="button" value="Resetuj" ng-click="resetForm()" class="btn btn-warning btn-sm" /><!--ng-disabled="myForm.$pristine"-->
+                    </div>
+                </div>
 
+</div>
+            </form>
+            </div>
+            </div>
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><span class="lead">Lista programow </span>
+            </div>
+            <div class="tablecontainer">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID.</th>
+                        <th>Autor</th>
+                        <th>Opis</th>
+                    <th width="20%"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="p in programList">
+                       <td><span ng-bind="p.id"></span></td>
+                        <td><span ng-bind="p.authors"></span></td>
+                        <td><span ng-bind="p.desc"></span></td>
+                        <td>
+                       <button type="button" ng-click="removeProgram()" class="btn btn-danger custom-width">Usun</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	</div>
+<!--koniec dodawanieprogramow-->
 
     </div>
 </div>
@@ -403,63 +398,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--//portfolio-->
 
 <!--SWIFT MAILER-->
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.js"></script>
-<script>
-    src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-resource.js"
 
-    var swiftApp=angular.module("mailerApp",['ngResource']);
-
-    swiftApp.config(['$httpProvider', function ($httpProvider) {
-        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
-    }]);
-
-    $scope.sendingEmaili = function(){
-        $scope.dane.push({ 'clientName':$scope.clientName, 'clientEmail':$scope.clientEmail, 'clientSubject':$scope.clientSubject ,'userMsg':$scope.userMsg });
-
-
-        var data = 'clientName=' + $scope.clientName + 'clientEmail=' + $scope.clientEmail + 'clientSubject=' + $scope.clientSubject + 'userMsg=' + $scope.userMsg;
-        $http.post('/save', data )
-                .success(function(data, status, headers, config) {
-                    $scope.message = data;
-                })
-                .error(function(data, status, headers, config) {
-                    alert( "failure message: ");
-                });
-        // Making the fields empty
-        $scope.clientName='';
-        $scope.clientEmail='';
-        $scope.clientSubject='';
-        $scope.userMsg='';
-    };
-
-</script>
-<div class="contact_desc" id="contact" ng-app="mailerApp" ng-controller="mailerController as mc" >
-    <div class="container">
+<div class="contact_desc" id="contact" ng-controller="test1Ctr" >
+      <div class="container">
         <h3 class="tittle" translate="CONTENT_MENU_7"></h3>
         <div class="contact-form">
-            <div role="alert">{{message}}</div>
+            <div role="alert">{{mailData.info}}</div>
             <form class="left_form"  ng-submit="accept">
                 <div>
                     <span><label>Imie</label></span>
-                    <span><input name="clientName" ng-model="clientName" type="text" class="textbox"/></span>
+                    <span><input name="clientName" ng-model="mailData.name" type="text" class="textbox"/></span>
                 </div>
                 <div>
                     <span><label>E-MAIL</label></span>
-                    <span><input name="clientEmail"  ng-model="clientEmail" type="text" class="textbox"/></span>
+                    <span><input name="clientEmail"  ng-model="mailData.adressfrom" type="text" class="textbox"/></span>
                 </div>
                 <div>
                     <span><label>Temat</label></span>
-                    <span><input name="clientSubject"  ng-model="ClientSubject" type="text" class="textbox"/></span>
+                    <span><input name="clientSubject" ng-model="mailData.subject" type="text" class="textbox"/></span>
                 </div>
                 <span ><label class="right" >Tresc</label></span>
-                <span class="right"><textarea name="userMsg"  ng-model="userMsg"> </textarea></span>
+                <span class="right"><textarea name="userMsg"  ng-model="mailData.content"> </textarea></span>
                 <div>
-                    <input type="submit" value="Wyslij" />
+                    <!--<input type="submit" value="Wyslij" />-->
+					<input type="submit" ng-click="submitForm()"> </input>
                 </div>
             </form>
             <div class="clearfix"></div>
         </div>
     </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.js"></script>
+
+<p>{{mailData}}</p>
 </div>
 
 

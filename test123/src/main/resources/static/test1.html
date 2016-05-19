@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>test1</title>
+
+</head>
+<body >
+<div ng-app="app2" ng-controller="test1-ctr" ng-cloak>
+<p>{{mailData}}</p>
+
+<form class="left_form"  ng-submit="accept">
+    <div>
+        <span><label>Imie</label></span>
+        <span><input name="clientName" ng-model="mailData.name" type="text" class="textbox"/></span>
+    </div>
+    <div>
+        <span><label>E-MAIL</label></span>
+        <span><input name="clientEmail"  ng-model="mailData.adressfrom" type="text" class="textbox"/></span>
+    </div>
+    <div>
+        <span><label>Temat</label></span>
+        <span><input name="clientSubject"  ng-model="mailData.subject" type="text" class="textbox"/></span>
+    </div>
+    <span ><label class="right" >Tresc</label></span>
+    <span class="right"><textarea name="userMsg"  ng-model="mailData.content"> </textarea></span>
+    <div>
+        <!--<input type="submit" value="Wyslij" />-->
+        <button ng-click="submitForm()">Send</button>
+    </div>
+</form>
+</div>
+<!--private String name;
+    private Integer mailID;
+    private String subject;
+    private String adressfrom;
+    private String content;
+    private String date;
+    private final String adminAdress="maildoprojektow@gmail.com";-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="js/app2.js"></script>
+<script src="js/controllers/test1.ctr.js"></script>
+</body>
+</html>

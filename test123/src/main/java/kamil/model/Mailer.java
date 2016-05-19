@@ -9,40 +9,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Mailer {
 
     private String name;
-    private Integer mailID;
+    //private Integer mailID;
     private String subject;
     private String adressfrom;
     private String content;
-    private String date;
-    private final String adminAdress="maildoprojektow@gmail.com";
+    private String date = null;
+
+   // private final String adminAdress="maildoprojektow@gmail.com";
+
 
     public String getName() {
         return name;
-    }
-
-    @Override
-    public String toString() {
-        return "Mailer{" +
-                "name='" + name + '\'' +
-                ", mailID=" + mailID +
-                ", subject='" + subject + '\'' +
-                ", adressfrom='" + adressfrom + '\'' +
-                ", content='" + content + '\'' +
-                ", date='" + date + '\'' +
-                ", adminAdress='" + adminAdress + '\'' +
-                '}';
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public Integer getMailID() {
-        return mailID;
+    public String getDate() {
+        return date;
     }
 
-    public void setMailID(Integer mailID) {
-        this.mailID = mailID;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getSubject() {
@@ -69,16 +58,14 @@ public class Mailer {
         this.content = content;
     }
 
-    public String getDate() {
-        return date;
+    @Override
+    public String toString() {
+        return "Mailer{" +
+                "name='" + name + '\'' +
+                ", subject='" + subject + '\'' +
+                ", adressfrom='" + adressfrom + '\'' +
+                ", content='" + content + '\'' +
+                ", date='" + date + '\'' +
+                '}';
     }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getAdminAdress() {
-        return adminAdress;
-    }
-
 }

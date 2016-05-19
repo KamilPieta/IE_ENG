@@ -64,3 +64,58 @@ app.controller('LangController',['$scope','$translate',function($scope,$translat
             $translate.use(key);
         };
 }]);
+
+app.controller('test1Ctr',['$scope','$http', function ($scope, $http) {
+            $scope.mailData = {
+                name : '',
+                mailID :'',
+                subject : '',
+                adressfrom :'',
+                content: '',
+                date:'',
+                info:''
+                 };
+
+            $scope.submitForm = function () {
+                console.info("fun start");
+                var ajax = $http.post('/mail/swiftMailer', $scope.mailData);
+                ajax.success(function (data) {
+               $scope.mailData.info=("mail sent: " + data.message);
+                });
+                console.info("fun finish");
+            }
+        }]);
+
+app.controller('ProgramController',['$scope','$http', function ($scope,$http){
+
+$scope.programList =[
+    {
+        id: '1',
+        authors: 'Kamil',
+        desc: 'opis blakvskldnvl asdkjasklncx'},
+    {
+        id: '2',
+        authors: 'Romek',
+        desc: 'opis 2 to jest opis super opis'},
+    {
+        id: '3',
+        authors: 'Atomek',
+        desc: 'opis 43  sadasdnmlsandjkasbnfjaskbfjas'},
+        ];
+
+$scope.sendProgram = function () {
+    console.info("program sended");
+    $scope.programList.push( $scope.program);
+    $scope.program='';
+}
+    $scope.removeProgram = function (){
+
+    }
+$scope.loadProgramList = function () {
+    
+    $http.get()
+    
+}
+
+
+}]);
